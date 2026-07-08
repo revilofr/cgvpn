@@ -39,8 +39,10 @@ sudo apt install network-manager jq unzip
 Download and install the latest `.deb` package directly:
 
 ```bash
-sudo apt install $(curl -fsSL https://api.github.com/repos/revilofr/cgvpn/releases/latest \
-  | grep browser_download_url | cut -d'"' -f4 | head -1)
+curl -fsSL -o /tmp/cgvpn.deb \
+  $(curl -fsSL https://api.github.com/repos/revilofr/cgvpn/releases/latest \
+    | grep browser_download_url | cut -d'"' -f4 | head -1)
+sudo apt install /tmp/cgvpn.deb
 ```
 
 Then open a new terminal — `vpn` will be available with tab completion.
@@ -136,6 +138,8 @@ vpn list                          # list all VPN connections
 vpn up [connection_name]          # connect (uses default if omitted)
 vpn down [connection_name]        # disconnect
 vpn status                        # show active VPN connections
+vpn version                       # show installed version
+vpn update                        # update to latest release (.deb only)
 ```
 
 Tab completion works for both commands and connection names:

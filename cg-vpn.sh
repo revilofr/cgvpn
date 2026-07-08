@@ -33,6 +33,8 @@ usage() {
   echo "  vpn up [connection_name]          # uses default if omitted"
   echo "  vpn down [connection_name]        # uses active or default if omitted"
   echo "  vpn status"
+  echo "  vpn version"
+  echo "  vpn update                        # update to latest release (.deb only)"
   exit 1
 }
 
@@ -256,6 +258,47 @@ EOF
   status)
     echo "Active VPN connections:"
     nmcli -t -f NAME,TYPE con show --active | grep vpn || echo "None"
+    ;;
+
+  version)
+    pkg_version="$(dpkg -s cgvpn 2>/dev/null | grep '^Version:' | cut -d' ' -f2)"
+    if [[ -n "$pkg_version" ]]; then
+      echo "cgvpn $pkg_version"
+    else
+      echo "cgvpn dev (source install)"
+    fi
+    ;;
+
+  update)
+    current="$(dpkg -s cgvpn 2>/dev/null | grep '^Version:' | cut -d' ' -f2)"
+    if [[ -z "$current" ]]; then
+      echo "ERROR: cgvpn was not installed via .deb."
+      echo "To update a source install: git pull && ./install.sh"
+      exit 1
+    fi
+
+    echo "Current version: $current"
+    echo "Checking for updates..."
+
+    api="$(curl -fsSL https://api.github.com/repos/revilofr/cgvpn/releases/latest)"
+    latest_tag="$(echo "$api" | grep '"tag_name"' | cut -d'"' -f4)"
+    latest="${latest_tag#v}"
+    download_url="$(echo "$api" | grep browser_download_url | cut -d'"' -f4 | head -1)"
+
+    if [[ "$current" == "$latest" ]]; then
+      echo "Already up to date ($current)."
+      exit 0
+    fi
+
+    echo "New version available: $latest"
+    read -rp "Install? [y/N] " answer
+    [[ "$answer" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 0; }
+
+    tmp="$(mktemp /tmp/cgvpn_XXXXXX.deb)"
+    trap 'rm -f "$tmp"' EXIT
+    curl -fsSL -o "$tmp" "$download_url"
+    sudo apt install "$tmp"
+    echo "✅ Updated to $latest"
     ;;
 
   *)

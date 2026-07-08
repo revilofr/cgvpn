@@ -3,7 +3,7 @@ _vpn_complete() {
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-  local commands="config check-config set-default import-zip import list up down status"
+  local commands="config check-config set-default import-zip import list up down status version update"
 
   _vpn_connection_names() {
     local creds="$HOME/.config/cg-vpn/credentials.json"
