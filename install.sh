@@ -36,5 +36,6 @@ cp "$SCRIPT_DIR/completion.bash" "$COMPLETION_DIR/$CMD_NAME"
 echo "  ✅ Bash completion: $COMPLETION_DIR/$CMD_NAME"
 
 echo ""
-echo "Done. Run: source ~/.bashrc"
-echo "Then use: $CMD_NAME  (tab completion available)"
+echo "Done."
+echo "  → Open a new terminal to use '$CMD_NAME' with tab completion."
+echo "    (or run: source ~/.bashrc  if ~/.local/bin was not yet in your PATH)"

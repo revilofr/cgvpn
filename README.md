@@ -36,10 +36,13 @@ sudo apt install network-manager jq unzip
 
 ```bash
 git clone https://github.com/yourname/cg-vpn.git
-cd cg-vpn
+cd cgvpn
 ./install.sh
-source ~/.bashrc
 ```
+
+Then open a new terminal — `vpn` will be available with tab completion.
+
+> If `~/.local/bin` was not already in your `PATH`, run `source ~/.bashrc` first.
 
 This will:
 - Add `vpn` as a command in `~/.local/bin/`
