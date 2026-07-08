@@ -161,6 +161,26 @@ vpn down
 
 ---
 
+## Updating
+
+### Via .deb (recommended install)
+
+```bash
+vpn update
+```
+
+Checks the latest release on GitHub, asks for confirmation, then downloads and installs the new `.deb` automatically.
+
+### Via source install
+
+```bash
+cd ~/path/to/cgvpn
+git pull
+./install.sh
+```
+
+---
+
 ## Usage
 
 ```
