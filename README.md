@@ -22,8 +22,8 @@ Many VPN providers (including CyberGhost) supply `.ovpn` config files but no nat
 # Import credentials
 vpn config set ~/my-credentials.json
 
-# Import a VPN profile and associate it with the "canada" credentials
-vpn import ~/downloads/canada.ovpn canada
+# Import a VPN profile from the .zip downloaded directly from CyberGhost (recommended)
+vpn import-zip ~/downloads/canada.zip canada
 
 # Set it as default so you can omit the name later
 vpn set-default canada
@@ -144,12 +144,16 @@ vpn config set ~/my-credentials.json
 
 ### 2. Import a VPN profile
 
-Download the `.ovpn` file (or `.zip`) from CyberGhost, then import it using the matching credential name:
+Download the `.zip` directly from CyberGhost (**My Devices → Configure Device → OpenVPN → Download**), then import it using the matching credential name:
+
+```bash
+vpn import-zip ~/downloads/canada.zip canada
+```
+
+Alternatively, if you only have a `.ovpn` file:
 
 ```bash
 vpn import ~/downloads/canada.ovpn canada
-# or
-vpn import-zip ~/downloads/canada.zip canada
 ```
 
 ### 3. Connect
