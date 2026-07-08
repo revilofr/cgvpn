@@ -16,6 +16,36 @@ Many VPN providers (including CyberGhost) supply `.ovpn` config files but no nat
 
 ---
 
+## Complete example
+
+```bash
+# Import credentials
+vpn config set ~/my-credentials.json
+
+# Import a VPN profile and associate it with the "canada" credentials
+vpn import ~/downloads/canada.ovpn canada
+
+# Set it as default so you can omit the name later
+vpn set-default canada
+
+# Check everything looks good
+vpn check-config
+vpn list
+
+# Connect
+vpn up
+# ✅ Connected (IPv6 disabled to prevent leaks)
+
+# Check status
+vpn status
+
+# Disconnect
+vpn down
+# ✅ Disconnected (IPv6 restored)
+```
+
+---
+
 ## Installation
 
 ### Install from GitHub Releases (recommended)
@@ -127,36 +157,6 @@ vpn import-zip ~/downloads/canada.zip canada
 ```bash
 vpn up           # uses the default connection
 vpn up canada    # explicit connection name
-```
-
----
-
-### Complete example
-
-```bash
-# Import credentials
-vpn config set ~/my-credentials.json
-
-# Import a VPN profile and associate it with the "canada" credentials
-vpn import ~/downloads/canada.ovpn canada
-
-# Set it as default so you can omit the name later
-vpn set-default canada
-
-# Check everything looks good
-vpn check-config
-vpn list
-
-# Connect
-vpn up
-# ✅ Connected (IPv6 disabled to prevent leaks)
-
-# Check status
-vpn status
-
-# Disconnect
-vpn down
-# ✅ Disconnected (IPv6 restored)
 ```
 
 ---
