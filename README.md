@@ -1,6 +1,6 @@
 # cg-vpn
 
-A minimal Bash utility to manage multiple OpenVPN connections on Linux, using NetworkManager under the hood.
+A lightweight Linux CLI to manage multiple OpenVPN connections via NetworkManager.
 
 Built primarily for [CyberGhost VPN](https://www.cyberghostvpn.com), but since it relies on standard OpenVPN profiles and `nmcli`, it should work with any VPN provider that supplies `.ovpn` config files.
 
