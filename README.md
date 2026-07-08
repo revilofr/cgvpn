@@ -16,22 +16,6 @@ Many VPN providers (including CyberGhost) supply `.ovpn` config files but no nat
 
 ---
 
-## Requirements
-
-- Linux with [NetworkManager](https://networkmanager.dev/)
-- `nmcli` (usually installed with NetworkManager)
-- `jq` (for credential management)
-- `unzip` (only needed for `vpn import-zip`)
-- Bash 4+
-
-Install dependencies on Debian/Ubuntu:
-
-```bash
-sudo apt install network-manager jq unzip
-```
-
----
-
 ## Installation
 
 ### Install from GitHub Releases (recommended)
@@ -44,6 +28,8 @@ curl -fsSL -o /tmp/cgvpn.deb \
     | grep browser_download_url | cut -d'"' -f4 | head -1)
 sudo apt install /tmp/cgvpn.deb
 ```
+
+`apt` installs all required dependencies automatically — no manual setup needed.
 
 Then open a new terminal — `vpn` will be available with tab completion.
 
@@ -62,6 +48,26 @@ cd cgvpn
 ```
 
 > If `~/.local/bin` was not already in your `PATH`, run `source ~/.bashrc` first.
+
+Dependencies must be installed manually (see [Requirements](#requirements) below).
+
+---
+
+## Requirements
+
+> Only needed for source installs — the `.deb` package handles this automatically.
+
+- Linux with [NetworkManager](https://networkmanager.dev/)
+- `nmcli` (usually installed with NetworkManager)
+- `jq` (for credential management)
+- `unzip` (only needed for `vpn import-zip`)
+- Bash 4+
+
+Install dependencies on Debian/Ubuntu:
+
+```bash
+sudo apt install network-manager jq unzip
+```
 
 ---
 
