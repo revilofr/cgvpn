@@ -1,0 +1,3 @@
+# Ignore VPN profiles (may contain sensitive data)
+ovpn/**
+!ovpn/.gitkeep
