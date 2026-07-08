@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# install.sh — Local install (symlink) for development/contributors.
+#
+# End-users should install the .deb from GitHub Releases instead:
+#   REPO="https://github.com/revilofr/cgvpn"
+#   curl -fsSL "$REPO/releases/latest/download/cgvpn_latest_all.deb" -o /tmp/cgvpn.deb
+#   sudo apt install /tmp/cgvpn.deb
+#
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,7 +14,7 @@ BIN_DIR="$HOME/.local/bin"
 CMD_NAME="vpn"
 BASHRC="$HOME/.bashrc"
 
-echo "Installing $CMD_NAME..."
+echo "Installing $CMD_NAME (local/dev mode)..."
 
 # Rendre le script exécutable
 chmod +x "$SCRIPT"

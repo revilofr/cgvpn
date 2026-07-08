@@ -34,19 +34,45 @@ sudo apt install network-manager jq unzip
 
 ## Installation
 
+### Install from GitHub Releases (recommended)
+
+Download and install the latest `.deb` package directly:
+
 ```bash
-git clone https://github.com/yourname/cg-vpn.git
-cd cgvpn
-./install.sh
+sudo apt install $(curl -fsSL https://api.github.com/repos/revilofr/cgvpn/releases/latest \
+  | grep browser_download_url | cut -d'"' -f4 | head -1)
 ```
 
 Then open a new terminal — `vpn` will be available with tab completion.
 
+Remove with:
+
+```bash
+sudo apt remove cgvpn
+```
+
+### Install from source (for contributors)
+
+```bash
+git clone https://github.com/revilofr/cgvpn.git
+cd cgvpn
+./install.sh
+```
+
 > If `~/.local/bin` was not already in your `PATH`, run `source ~/.bashrc` first.
 
-This will:
-- Add `vpn` as a command in `~/.local/bin/`
-- Install bash tab completion in `~/.local/share/bash-completion/completions/`
+---
+
+## Publishing a new release
+
+Releases are built and published automatically by GitHub Actions when a version tag is pushed.
+
+```bash
+git tag v1.2.3
+git push origin v1.2.3
+```
+
+This triggers the CI workflow which builds `cgvpn_1.2.3_all.deb` and attaches it to a new GitHub Release.
 
 ---
 
