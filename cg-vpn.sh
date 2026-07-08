@@ -297,6 +297,7 @@ EOF
     tmp="$(mktemp /tmp/cgvpn_XXXXXX.deb)"
     trap 'rm -f "$tmp"' EXIT
     curl -fsSL -o "$tmp" "$download_url"
+    chmod 644 "$tmp"
     sudo apt install "$tmp"
     echo "✅ Updated to $latest"
     ;;
